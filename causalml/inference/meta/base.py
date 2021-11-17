@@ -21,13 +21,13 @@ class BaseLearner(metaclass=ABCMeta):
     def predict(self, X, treatment=None, y=None, p=None, return_components=False, verbose=True):
         pass
 
-    def fit_predict(self, X, treatment, y, p=None, return_ci=False, n_bootstraps=1000, bootstrap_size=10000,
+    def fit_predict(self, X, treatment, y, p=None, return_ci=False, n_bootstraps=1, bootstrap_size=100,
                     return_components=False, verbose=True):
         self.fit(X, treatment, y, p)
         return self.predict(X, treatment, y, p, return_components, verbose)
 
     @abstractclassmethod
-    def estimate_ate(self, X, treatment, y, p=None, bootstrap_ci=False, n_bootstraps=1000, bootstrap_size=10000):
+    def estimate_ate(self, X, treatment, y, p=None, bootstrap_ci=False, n_bootstraps=1, bootstrap_size=100):
         pass
 
     def bootstrap(self, X, treatment, y, p=None, size=10000):
